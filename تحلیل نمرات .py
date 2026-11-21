@@ -1,34 +1,26 @@
 
 import numpy as np
+from sklearn.linear_model import LinearRegression
 
-#ارایه نمرات
-scores = np.array([12, 15, 18, 20, 9, 14, 17, 19, 8, 16])
+# اطلاعات خانه ها
+sizes = np.array([50, 60, 70, 80, 90, 100]).reshape(-1, 1)
 
-#میانگین نمرات
-average = np.mean(scores)
+# قیمت خانه ها
+prices = np.array([1000, 1200, 1400, 1600, 1800, 2000])
 
-#پیدا کردن کوچیک و بزرگترین نمره
-highest = np.max(scores)
-lowest = np.min(scores)
+# ساخت مدل
+model = LinearRegression()
 
-#جمع تمام نمرات
-total = np.sum(scores)
+# آموزش مدل
+model.fit(sizes, prices)
 
-#پیدا کردن نمرات بزرگتر از 18
-excellent = scores[scores > 18]#سام نزاریم مینویسشون
+# خانه جدید
+size=float(input("Enter house size:"))
+new_house=np.array([[size]])
 
-#پیدا کردن کسانی که افتادن یا پاس شدن
-passed = np.sum(scores >= 10)#نمرات بزرگتر یا مساوی 10 پاس هستند فقط بشمارشون
-failed = np.sum(scores < 10)#نمرات کمتر 10 افتادن
+# پیش بینی قیمت
+prediction = model.predict(new_house)
 
-#پیام نمایشی
-print("===== Student Score Analysis =====")
-
-print("Scores:", scores)
-print("Average:", average)
-print("Highest score:", highest)
-print("Lowest score:", lowest)
-print("Total scores:", total)
-print("Excellent scores:", excellent)
-print("Passed students:", passed)
-print("Failed students:", failed)
+# نمایش نتیجه
+print("House size:", new_house[0][0])
+print("Predicted price:", prediction[0], "million toman")
