@@ -15,7 +15,8 @@ model = LinearRegression()
 model.fit(sizes, prices)
 
 # خانه جدید
-new_house = np.array([[75]])
+size=float(input("Enter house size:"))
+new_house=np.array([[size]])
 
 # پیش بینی قیمت
 prediction = model.predict(new_house)
